@@ -23,7 +23,7 @@
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="scripts/auth.js"></script>
     <script>
-        if (isLoggedIn() === true) window.location.replace("/posts");
+        if (isLoggedIn() === true) window.location.replace("/posts.html");
     </script>
 </head>
 <body>
@@ -33,26 +33,51 @@
     </header>
 
     <main>
-
-        <form id="login">
-            <div>
-                <label for="username">Username</label>
-                <input type="text" id="username" minlength="3">
+        <div class="container">
+            <div class="row">
+                <div class="col-1 homepageside"></div>
+                
+                <div class="col-10 homepage">
+                    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+                        <div class="card p-4" style="width: 100%; max-width: 400px;">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Login</h5>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" placeholder="Enter your username" minlength="3">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Enter your password" minlength="6">
+                                    </div>
+                                    <button id="loginButton" type="submit" class="btn btn-primary btn-block" onclick="login ()">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
             </div>
+<<<<<<< Updated upstream
 
             <div>
                 <label for="password">Password</label>
                 <input type="password" id="password" minlength="6">
             </div>
 
-            <button id="loginButton" type="submit">Login</button>
+            <button id="loginButton" type="submit" onclick="login ()">Login</button>
         </form>
 
+=======
+            <div class="col-1 homepageside"></div>
+        </div>
+    </div>
+ 
+>>>>>>> Stashed changes
     </main>
 
     <footer></footer>
 
     <!-- Page-specific code -->
-    <script src="css/landing.js"></script>
+    <script src="scripts/landing.js"></script>
 </body>
 </html>

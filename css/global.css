@@ -16,3 +16,10 @@
 :root {
     font-size: 1rem;
 }
+
+.homepage{
+    background-color: aqua;
+}
+.homepageside{
+    background-color: blue;
+}
