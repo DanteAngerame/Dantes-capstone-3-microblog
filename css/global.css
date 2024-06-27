@@ -12,14 +12,48 @@
     */
     /* outline: 1px dotted red; */
 }
-
 :root {
     font-size: 1rem;
 }
 
-.homepage{
-    background-color: aqua;
+body, html {
+    height: 100%;
+    margin: 0;
 }
-.homepageside{
-    background-color: blue;
+
+main {
+    background-color: rgb(255, 255, 255);
+    min-height: 100vh; /* Ensure main takes the full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+
+.card {
+    max-width: 400px; /* Adjust max-width as needed */
+    margin: 0 auto; /* Center the card horizontally */
+}
+
+#signupSection {
+    max-width: 400px; /* Adjust max-width as needed */
+    margin: 0 auto; /* Center the signup section horizontally */
+}
+
+
+.homepage {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Custom arrow icon rotation */
+.rotate {
+    transition: transform 0.3s ease;
+}
+
+.down {
+    transform: rotate(180deg);
 }

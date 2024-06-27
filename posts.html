@@ -19,7 +19,7 @@
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="css/posts.css">
 
-    <title>/POSTS</title>
+    <title>Bison.Social Home</title>
 
     <!-- Run BEFORE page is finished loading (before window.onload): -->
     <script src="scripts/auth.js"></script>
@@ -30,17 +30,44 @@
 <body>
 
     <header>
-        <h1>POSTS PAGE</h1>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container">
+              <a class="navbar-brand" href="posts.html">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                  </svg>
+              </a>
+              <a class="navbar-brand" href="profile.html">Profile</a>
+              <br><br>
+              <button id="Logoutbtn" onclick="logout()">Log me out</button>
+            </div>
+            
+          </nav>
+        
     </header>
 
     <main>
-
-        <button id="Logoutbtn" onclick="logout ()">Log me out</button>
+        <div class="container mt-4">
+            <h2>Create a New Post</h2>
+            <form id="postForm">
+                <div class="form-group">
+                    <label for="postText">Post Text</label>
+                    <textarea class="form-control" id="postText" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Create Post</button>
+            </form>
+    
+            <div class="row mt-4" id="postContainer">
+                <!-- Cards will be dynamically added here -->
+            </div>
+            <button id="seeMoreButton" class="btn btn-primary m-3" style="display: none;">See More</button>
+        </div>
     </main>
 
     <footer></footer>
 
     <!-- Page-specific code -->
+     <script src="scripts/posts.js"></script>
     <script src="scripts/landing.js"></script>
 </body>
 </html>

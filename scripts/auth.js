@@ -26,57 +26,68 @@ function isLoggedIn () {
 }
 
 
-// This function is already being used in the starter code for the
-// landing page, in order to process a user's login. READ this code,
-// and feel free to re-use parts of it for other `fetch()` requests
-// you may need to write.
-function login (loginData) {
+// Function to display error message
+function displayErrorMessage(message) {
+    const errorDisplay = document.getElementById('errorDisplay');
+    errorDisplay.textContent = message;
+    errorDisplay.classList.remove('d-none'); // Remove the 'd-none' class to show the error message
+}
+
+// Function to clear error message
+function clearErrorMessage() {
+    const errorDisplay = document.getElementById('errorDisplay');
+    errorDisplay.textContent = '';
+    errorDisplay.classList.add('d-none'); // Add the 'd-none' class to hide the error message
+}
+
+// This function handles the login process, including error handling for invalid credentials.
+function login(loginData) {
     // POST /auth/login
     const options = { 
         method: "POST",
         headers: {
-            // This header specifies the type of content we're sending.
-            // This is required for endpoints expecting us to send
-            // JSON data.
             "Content-Type": "application/json",
         },
         body: JSON.stringify(loginData),
     };
 
     return fetch(apiBaseURL + "/auth/login", options)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok.");
+            }
+            return response.json();
+        })
         .then(loginData => {
             if (loginData.message === "Invalid username or password") {
-                console.error(loginData)
-                // Here is where you might want to add an error notification 
-                // or other visible indicator to the page so that the user is  
-                // informed that they have entered the wrong login info.
-                return null
+                displayErrorMessage("Invalid username or password. Please try again."); // Display error message
+                return null;
             }
 
+            clearErrorMessage(); // Clear any previous error message
             window.localStorage.setItem("login-data", JSON.stringify(loginData));
-            window.location.assign("/posts.html");  // redirect
+            window.location.assign("/posts.html");  // Redirect to posts page on successful login
 
             return loginData;
+        })
+        .catch(error => {
+            console.error('Error during login:', error);
+            const errorMessage = "Username or Password was not recognized.<br>Please try again.";
+            document.getElementById('errorDisplay').innerHTML = errorMessage;
+            document.getElementById('errorDisplay').classList.remove('d-none'); // Make sure error message is visible
+            return null; // Return null or handle as needed
         });
 }
 
-
 // This is the `logout()` function you will use for any logout button
-// which you may include in various pages in your app. Again, READ this
-// function and you will probably want to re-use parts of it for other
-// `fetch()` requests you may need to write.
-function logout () {
+// which you may include in various pages in your app.
+function logout() {
     const loginData = getLoginData();
 
     // GET /auth/logout
     const options = { 
         method: "GET",
         headers: { 
-            // This header is how we authenticate our user with the
-            // server for any API requests which require the user
-            // to be logged-in in order to have access.
-            // In the API docs, these endpoints display a lock icon.
             Authorization: `Bearer ${loginData.token}`,
         },
     };
@@ -85,11 +96,22 @@ function logout () {
         .then(response => response.json())
         .then(data => console.log(data))
         .finally(() => {
-            // We're using `finally()` so that we will continue with the
-            // browser side of logging out (below) even if there is an 
-            // error with the fetch request above.
-
-            window.localStorage.removeItem("login-data");  // remove login data from LocalStorage
-            window.location.assign("/index.html");  // redirect back to landing page
+            window.localStorage.removeItem("login-data");
+            window.location.assign("/index.html");
         });
 }
+/*
+Example usage:
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        login({ username, password });
+    });
+});*/
+

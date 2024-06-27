@@ -18,7 +18,7 @@
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="css/landing.css">
 
-    <title>Login to the Microblog Network!</title>
+    <title>Bison.Social Login</title>
 
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="scripts/auth.js"></script>
@@ -29,37 +29,61 @@
 <body>
 
     <header>
-        <h1>Welcome to <code>YOUR MICROBLOG NETWORK</code></h1>
+        <h1 class="container d-flex justify-content-center">Test 1-2</h1>
     </header>
 
     <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-1 homepageside"></div>
-                
-                <div class="col-10 homepage">
-                    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-                        <div class="card p-4" style="width: 100%; max-width: 400px;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Login</h5>
-                                <form>
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" placeholder="Enter your username" minlength="3">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password" placeholder="Enter your password" minlength="6">
-                                    </div>
-                                    <button id="loginButton" type="submit" class="btn btn-primary btn-block" onclick="login ()">Login</button>
-                                </form>
+        <div class="container-fluid">
+            <div class="row justify-content-center align-items-center min-vh-100">
+                <div class="col-lg-8 col-xl-6"> <!-- Adjusted column widths for larger screens -->
+                    <!-- Login Card -->
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Login</h5>
+                            <form id="loginForm">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" id="username" placeholder="Enter your username" minlength="3">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="password" placeholder="Enter your password" minlength="6">
+                                </div>
+                                <button id="loginButton" type="submit" class="btn btn-primary btn-block">Login</button>
+                            </form> 
+                            <div id="errorDisplay" class="mt-2 text-danger text-center d-none"> <!-- Error message container -->
+                                There was an error logging in. Please try again.
                             </div>
-                        </div>
+                        </div> 
                     </div>
+                    
+                    <!-- OR Text and Sign Up Button Below Login Card -->
+                    <div class="text-center mb-3">
+                        
+                        <button id="signupButton" class="btn btn-secondary mt-2">Sign up</button>
+                    </div>
+                    
+                    <!-- Separate card for signup information -->
+                    <div id="signupSection" class="card mb-3 d-none">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Create an Account</h5>
+                            <form id="signupForm">
+                                <div class="form-group">
+                                    <label for="newUsername">Username</label>
+                                    <input type="text" class="form-control" id="newUsername" placeholder="Enter a new username" minlength="3">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">Password</label>
+                                    <input type="password" class="form-control" id="newPassword" placeholder="Enter a new password" minlength="6">
+                                </div>
+                                <button id="createAccountButton" type="submit" class="btn btn-primary btn-block">Create Account</button>
+                            </form> 
+                        </div> 
+                    </div>
+                </div>
             </div>
-
+        </div>
     </main>
-
     <footer></footer>
 
     <!-- Page-specific code -->
