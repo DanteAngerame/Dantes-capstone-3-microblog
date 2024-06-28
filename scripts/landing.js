@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     setTimeout(function() {
                         window.location.assign("index.html");
                     }, 5000);
-                    msg.innerHTML = "User created successfully, Redirecting to Log In page";
+                    msg.innerHTML = "User created successfully, Please wait...";
                 })
                 .catch(error => {
                     msg.innerHTML = "Something went wrong... check console.";
