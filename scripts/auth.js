@@ -115,3 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });*/
 
+// After the window loads and after the register button is clicked...
+
+

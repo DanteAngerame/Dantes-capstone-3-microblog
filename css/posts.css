@@ -5,6 +5,43 @@
     max-height: 90vh;
     overflow-y: scroll;
 }
+#postContainer {
+    max-height: 90vh;
+    overflow-y: scroll;
+    scrollbar-width: thin; /* "auto" or "thin" depending on browser support */
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1); /* thumb color and track color */
+
+    /* For WebKit based browsers like Safari and Chrome */
+    scrollbar-width: thin; /* "auto" or "thin" depending on browser support */
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1); /* thumb color and track color */
+
+    /* For Firefox */
+    scrollbar-width: thin; /* "auto" or "thin" depending on browser support */
+    scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0.1); /* thumb color and track color */
+
+    /* Hide scrollbar for IE, Edge, and other older browsers */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+#postContainer::-webkit-scrollbar {
+    width: 6px; /* width of the scrollbar */
+}
+
+#postContainer::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* color of the track */
+}
+
+#postContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5); /* color of the thumb */
+    border-radius: 3px; /* rounded corners of the thumb */
+}
+
+/* Optional: When hovering over the scrollbar */
+#postContainer::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* darker color when hovered */
+}
+
 
 .card {
     margin-bottom: 20px;

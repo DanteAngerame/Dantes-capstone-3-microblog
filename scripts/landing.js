@@ -67,4 +67,127 @@ document.addEventListener("DOMContentLoaded", function() {
             signupForm.reset();
         }
     });
+
+    const apiBaseURL = 'http://microbloglite.us-east-2.elasticbeanstalk.com'; // Replace with your actual API base URL
+    const msg = document.getElementById('message'); // Ensure there's an element with id 'message' to show messages
+
+    signupForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting the traditional way
+
+        const username = document.getElementById("newUsername").value;
+        const password = document.getElementById("newPassword").value;
+        const fullName = document.getElementById("newfullName").value;
+
+        // Clear any previous messages
+        clearMsg();
+
+        if (username && password) {
+            console.log("All fields were successfully filled.");
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            const raw = JSON.stringify({
+                "username": username,
+                "password": password,
+                "fullName": fullName // Include the default fullName
+            });
+
+            console.log("Request payload:", raw); // Log the payload for debugging
+
+            const options = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+            };
+
+            fetch(apiBaseURL + "/api/users", options)
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw new Error(`HTTP error! status: ${response.status} - ${err.message}`); });
+                    }
+                    return response.json();
+                })
+                .then(json => {
+                    setTimeout(function() {
+                        window.location.assign("index.html");
+                    }, 5000);
+                    msg.innerHTML = "User created successfully, Redirecting to Log In page";
+                })
+                .catch(error => {
+                    msg.innerHTML = "Something went wrong... check console.";
+                    console.error("Error:", error.message); // Log the error message
+                });
+
+        } else {
+            msg.innerHTML = "Please fill in all fields.";
+            console.log("Check for blank fields");
+        }
+    });
+
+    function clearMsg() {
+        if (msg) {
+            msg.innerHTML = "";
+        }
+    }
 });
+
+/* Original sign-up code
+window.addEventListener('load', function () {
+    this.document.getElementById("register").onclick = () => {
+      // Values of Input Fields
+      const username = document.getElementById("username").value;
+      const pw = document.getElementById("psw").value;
+      const confpw = document.getElementById("psw-repeat").value;
+      const fullNameVal = this.document.getElementById("fullName").value;
+      // TODO: CALL ON CLEAR MSG FUNCTION
+      clearMsg();
+  
+      const isEmpty = (!(username && pw && confpw))
+      if (!isEmpty && (pw === confpw)) {
+        console.log("All fields were successfully filled.")
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+  
+        const raw = JSON.stringify({
+          "username": username,
+          "fullName": fullNameVal,
+          "password": pw
+        });
+  
+        const options = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+        };
+        fetch(apiBaseURL + "/api/users", options)
+        .then(response => {
+            if(!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json()
+        })
+        .then(json => {
+            setTimeout(
+                function () {
+                    window.location.assign("index.html");
+                }, 5000);
+           msg.innerHTML = "User created successfully, Redirecting to Log In page"
+  
+        })
+        .catch(error => {
+          msg.innerHTML = "Something went wrong... check console."
+            console.error("Error:", error);
+        });
+  
+      } 
+      else {
+        msg.innerHTML = "Something went wrong... check console."
+        if (isEmpty) {
+          console.log("Check for blank fields")
+        } else if (pw !== confpw) {
+          console.log("Passwords don't match.")
+        }
+      }
+    }
+  })
+*/

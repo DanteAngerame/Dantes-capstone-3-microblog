@@ -20,23 +20,43 @@ body, html {
     height: 100%;
     margin: 0;
 }
+.navbar{
+background-color: rgb(235, 202, 255);
+}
 
 main {
-    background-color: rgb(255, 255, 255);
-    min-height: 100vh; /* Ensure main takes the full viewport height */
+    background-color :#ffe5c7;
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
 }
 
+.profileName{
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+.profileUsername{
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
 
 .card {
-    max-width: 400px; /* Adjust max-width as needed */
-    margin: 0 auto; /* Center the card horizontally */
+    color: rgb(0, 0, 0);
+    background-color: rgb(244, 227, 255);
+    max-width: 400px; 
+    margin: 0 auto; 
+}
+.card-text{
+    font-family: "DM Sans", sans-serif;
+    font-weight: 300;
+    font-style: italic;
 }
 
 #signupSection {
-    max-width: 400px; /* Adjust max-width as needed */
-    margin: 0 auto; /* Center the signup section horizontally */
+    max-width: 400px; 
+    margin: 0 auto; 
 }
 
 
@@ -49,11 +69,56 @@ main {
 
 
 
-/* Custom arrow icon rotation */
-.rotate {
-    transition: transform 0.3s ease;
+
+.lightText{
+    color: rgb(0, 0, 0);
+    font-family: "Rammetto One", sans-serif;
+    font-weight: 900;
+  
+}
+.lightTextUnselected{
+    color: rgb(0, 0, 0);
+    font-family: "Rammetto One", sans-serif;
+    font-weight: 100;
 }
 
-.down {
-    transform: rotate(180deg);
+
+.styled-list {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0;
+}
+
+.styled-list .list-item {
+    font-family: "Comme", sans-serif;
+    font-weight: 200;
+    color: #1d1d1d; 
+    padding: 10px; 
+    border: none; 
+    text-decoration: none; 
+
+}
+
+.styled-list .list-item:not(:last-child) {
+    border-bottom: 1px solid #555555; 
+    width: 50%; 
+    margin-left: 25%; 
+}
+
+.styled-list .list-item + .list-item {
+    margin-top: 10px; 
+}
+
+.logo{
+width: 10%;
+}
+.biglogo{
+    width: 20%;
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.card-title{
+    font-weight: 800;
 }

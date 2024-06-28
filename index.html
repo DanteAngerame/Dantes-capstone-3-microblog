@@ -18,8 +18,8 @@
     <!-- Page-specific CSS -->
     <link rel="stylesheet" href="css/landing.css">
 
-    <title>Bison.Social Login</title>
-
+    <title>PurpleDuck.Social Login</title>
+    <link rel="icon" type="image/png" href="imgs/Asset 3.svg">
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="scripts/auth.js"></script>
     <script>
@@ -29,15 +29,18 @@
 <body>
 
     <header>
-        <h1 class="container d-flex justify-content-center">Test 1-2</h1>
+        <div class="navbar">
+            <img class="biglogo" src="imgs/Logo_Text_Bold.svg">
+        <h1 class="container d-flex justify-content-center"></h1>
+        </div>
     </header>
 
     <main>
         <div class="container-fluid">
-            <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="row justify-content-center align-items-center mt-5">
                 <div class="col-lg-8 col-xl-6"> <!-- Adjusted column widths for larger screens -->
                     <!-- Login Card -->
-                    <div class="card mb-3">
+                    <div class="card mb-3 mt-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Login</h5>
                             <form id="loginForm">
@@ -49,7 +52,7 @@
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" placeholder="Enter your password" minlength="6">
                                 </div>
-                                <button id="loginButton" type="submit" class="btn btn-primary btn-block">Login</button>
+                                <button id="loginButton" type="submit" class="btn btn-outline-dark btn-block mt-3">Login</button>
                             </form> 
                             <div id="errorDisplay" class="mt-2 text-danger text-center d-none"> <!-- Error message container -->
                                 There was an error logging in. Please try again.
@@ -60,7 +63,7 @@
                     <!-- OR Text and Sign Up Button Below Login Card -->
                     <div class="text-center mb-3">
                         
-                        <button id="signupButton" class="btn btn-secondary mt-2">Sign up</button>
+                        <button id="signupButton" class="btn btn-outline-dark mt-2">Sign up</button>
                     </div>
                     
                     <!-- Separate card for signup information -->
@@ -76,8 +79,14 @@
                                     <label for="newPassword">Password</label>
                                     <input type="password" class="form-control" id="newPassword" placeholder="Enter a new password" minlength="6">
                                 </div>
-                                <button id="createAccountButton" type="submit" class="btn btn-primary btn-block">Create Account</button>
-                            </form> 
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" class="form-control" id="newfullName" placeholder="Enter your full name">
+                                </div>
+                                <div class="msg"></div>
+                                <div id="message" class="mt-3"></div>
+                                <button id="createAccountButton" type="submit" class="btn btn-outline-dark btn-block mt-2">Create Account</button>
+                            </form>
                         </div> 
                     </div>
                 </div>

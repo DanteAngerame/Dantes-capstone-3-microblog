@@ -6,7 +6,7 @@ const limit = 1000; // Number of posts to fetch per request
 
 window.onload = (e) => {
     getAllPostFromUser();
-    console.log('test')
+    fetchUserData();
 };
 
 function getLoginData() {
@@ -27,7 +27,6 @@ function getAllPostFromUser() {
         headers: myHeaders,
         redirect: 'follow'
     };
-console.log(loginData.username)
     fetch(`http://microbloglite.us-east-2.elasticbeanstalk.com/api/posts?limit=${limit}&offset=${offset}&username=${loginData.username}`, requestOptions)
         .then(response => response.json())
         .then(posts => {
@@ -37,6 +36,10 @@ console.log(loginData.username)
         })
         .catch(error => console.error('Error fetching posts:', error));
 }
+
+
+
+
 
 function displayPost(postData) {
     const postList = document.getElementById('postContainer');
@@ -48,7 +51,7 @@ function displayPost(postData) {
         cardElement.innerHTML = `
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">${post.username}</h5>
+                    <h5 class="card-title">@${post.username}</h5>
                     <p class="card-text">${post.text}</p>
                     <p class="card-text"><small class="text-muted">${new Date(post.createdAt).toLocaleString()}</small></p>
                     <button class="btn deleteBtn" data-id="${post._id}">
@@ -84,7 +87,6 @@ const seeMoreButton = document.getElementById('seeMoreButton');
 if (seeMoreButton) {
     seeMoreButton.addEventListener('click', () => {
         getAllPostFromUser();
-        alert('hi')
     });
 }
 
@@ -104,3 +106,44 @@ function deletePost(postId) {
     })
     .catch(error => console.error('Error deleting post:', error));
 }
+
+function fetchUserData() {
+    const loginData = getLoginData(); // Get login information including token
+    const username = loginData.username;
+
+    const myHeaders = new Headers();
+    myHeaders.append('accept', 'application/json');
+    myHeaders.append('Authorization', `Bearer ${loginData.token}`);
+
+    const requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    fetch(`http://microbloglite.us-east-2.elasticbeanstalk.com/api/users/${username}`, requestOptions)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Call a function to update the DOM with the fetched data
+            updateUserInfo(data.username, data.fullName);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+}
+
+
+function updateUserInfo(username, fullName) {
+    const userInfoDiv = document.getElementById('userInfo'); 
+    if (userInfoDiv) {
+        userInfoDiv.innerHTML = `
+            <p class="profilename">@ ${username}</p>
+            <p class="profileusername"><strong> ${fullName}</strong></p>
+        `;
+    }
+}   

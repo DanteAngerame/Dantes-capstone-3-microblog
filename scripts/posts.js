@@ -17,7 +17,6 @@ function getLoginData() {
 
 function grabAlleThePosts() {
     const loginData = getLoginData();
-    console.log(loginData.username)
     const myHeaders = new Headers();
     myHeaders.append('accept', 'application/json');
     myHeaders.append('Authorization', `Bearer ${loginData.token}`);
@@ -46,15 +45,15 @@ function displayPost(postData) {
             <div class="col-12 mb-4">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title">${post.username}</h5>
+                  <h5 class="card-title">@${post.username}</h5>
                   <p class="card-text">${post.text}</p>
-                  <p class="card-text"><small class="text-muted">${post.createdAt}</small></p>
+                  <p class="card-text"><small class="text-muted">${new Date(post.createdAt).toLocaleString()}</small></p>
                 </div>
               </div>
             </div>
           `;
         const cardElement = document.createElement('div');
-        cardElement.classList.add('col-12', 'mb-4');
+        cardElement.classList.add('col-12', 'mb-2');
         cardElement.innerHTML = cardHtml;
 
         // Add delete button only if the post is created by the logged-in user
@@ -112,7 +111,7 @@ function createPost(event) {
                     <div class="card-body">
                       <h5 class="card-title">${post.username}</h5>
                       <p class="card-text">${post.text}</p>
-                      <p class="card-text"><small class="text-muted">${post.createdAt}</small></p>
+                      <p class="card-text"><small class="text-muted">${new Date(post.createdAt).toLocaleString()}</small></p>
                     </div>
                   </div>
                 </div>
